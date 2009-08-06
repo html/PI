@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<todo version="0.1.20">
+    <note priority="medium" time="1249472665">
+        Форум
+        <note priority="medium" time="1249472706" done="1249547024">
+            Український переклад
+        </note>
+        <note priority="medium" time="1249472719">
+            Знайти і залатати діри
+        </note>
+        <note priority="medium" time="1249472817">
+            Натягнути дизайн
+        </note>
+        <note priority="medium" time="1249547041">
+            Створити категорії
+        </note>
+        <note priority="medium" time="1249547095">
+            Створити ранги
+        </note>
+    </note>
+</todo>
