@@ -8,8 +8,11 @@
   <h1>An error occurred</h1>
   <h2><?= $this->message ?></h2>
 
-  <? if ('development' == APPLICATION_ENV): ?>
-
+  <? if ('development' == APPLICATION_ENV && $this->exception): ?>
+  <div style="position:absolute;left:0;top:0;background:white;border:1px solid black">
+    <?$this->headScript()->appendFile('/js/jquery-1.3.2.js')->appendFile('/js/common.js')?>
+    <a id="togglelink" href="#" style="display:block;width:20px;height:20px"><?=$this->cDebugAreaVisible ? '-' : '+'?></a>
+    <div id="debugarea" style="display:<?=$this->cDebugAreaVisible ? 'block' : 'none'?>">
   <h3>Exception information:</h3>
   <p>
       <b>Message:</b> <?= $this->exception->getMessage() ?>
@@ -22,6 +25,18 @@
   <h3>Request Parameters:</h3>
   <pre><? var_dump($this->request->getParams()) ?>
   </pre>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('#togglelink').click(function(){
+        var d = $('#debugarea');
+        var vis = d.is(':visible');
+        d[(['show', 'hide'])[+vis]]();
+        $(this).html(['-','+'][+vis]);
+        setCookie('DebugAreaVisible', +!vis);
+    });
+});
+</script>
   <? endif ?>
 
 </body>

@@ -6,7 +6,7 @@ defined('APPLICATION_PATH')
 
 // Define application environment
 defined('APPLICATION_ENV')
-    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
@@ -16,11 +16,19 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 /** Zend_Application */
 require_once 'Zend/Application.php';  
+require_once 'functions.php';
+require_once 'phpbbhook.php';
 
 // Create application, bootstrap, and run
+require_once 'Zend/Config/Ini.php';
+$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini');
+
+require_once 'Zend/Registry.php';
+Zend_Registry::set('configuration', $config->{APPLICATION_ENV});
+
 $application = new Zend_Application(
     APPLICATION_ENV, 
-    APPLICATION_PATH . '/configs/application.ini'
+    $config->{APPLICATION_ENV}
 );
 $application->bootstrap()
             ->run();

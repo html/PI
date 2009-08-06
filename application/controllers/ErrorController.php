@@ -7,7 +7,7 @@ class ErrorController extends Zend_Controller_Action
     {
         $errors = $this->_getParam('error_handler');
         
-        switch ($errors->type) { 
+        switch ($errors->type) {
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
         
@@ -24,6 +24,8 @@ class ErrorController extends Zend_Controller_Action
         
         $this->view->exception = $errors->exception;
         $this->view->request   = $errors->request;
+
+        $this->view->cDebugAreaVisible = !!$this->getRequest()->getCookie('DebugAreaVisible', true);
     }
 
 

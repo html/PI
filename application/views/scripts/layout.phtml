@@ -1,0 +1,28 @@
+<?= $this->doctype() ?> <!-- This Line will output the doctype we set inside the bootstrap file -->
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title><?=$this->escape($this->title)?></title>
+  <?=$this->headLink()->appendStylesheet('/css/global.css')?>
+  <?=$this->headScript()?>
+</head> 
+<body>
+
+<div style="width:800px;margin:auto auto;border:1px solid purple;">
+<div class="clear"></div>
+<div id="content">
+<?if($this->title){?><h1><?=$this->title?></h1><?}?>
+
+<?if($this->messages){foreach($this->messages as $message){?>
+ <div class="message"><?=$this->escape($message)?></div>
+<?}}?>
+<?if($this->errors){foreach($this->errors as $error){?>
+ <div class="error"><?=$error?></div>
+<?}}?>
+<?= $this->layout()->content ?>
+</div>
+<div class="clear"></div>
+</div>
+
+</body>
+</html>

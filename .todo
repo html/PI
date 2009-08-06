@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
+    <note priority="veryhigh" time="1249568034">
+        Натягнути дизайн на сайт
+    </note>
     <note priority="medium" time="1249472665">
         Форум
-        <note priority="medium" time="1249472706" done="1249547024">
+        <note priority="medium" time="1249472706" done="1249550374">
             Український переклад
         </note>
         <note priority="medium" time="1249472719">
@@ -17,5 +20,20 @@
         <note priority="medium" time="1249547095">
             Створити ранги
         </note>
+        <note priority="medium" time="1249550892">
+            Вибрати заголовок форуму
+        </note>
+    </note>
+    <note priority="medium" time="1249550734">
+        Інтеграція користувачів і сесій форуму і сайту
+    </note>
+    <note priority="medium" time="1249563900">
+        Статті
+    </note>
+    <note priority="medium" time="1249563906">
+        Гелерея
+    </note>
+    <note priority="medium" time="1249563923">
+        Додати ссилки на погоду і нерухомість
     </note>
 </todo>
