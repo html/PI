@@ -1,0 +1,10 @@
+
+.sp {font-size:1px; color:#000000; text-align:center;}
+.authors {font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#000066; text-align:right; padding-right:10px;}
+.pagetitle {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:18px; color:#FFAB56; text-align:left; padding-left:10px;}
+.txt {text-align:justify; color:#000000; font-family:Arial, Helvetica, sans-serif; font-size:13px; padding-left:10px; padding-right:10px; padding-bottom:10px;}
+	
+a:link.top {padding-left: 15px; font-family:tahoma; font-size:12px;color:black; text-decoration:none; font-weight:bold; text-align:left;}
+a:visited.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB56; text-decoration:none; font-weight:bold; text-align:left;}
+a:hover.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB56; text-decoration:underline; font-weight:bold; text-align}
+.joke {text-align:left; color:#000000; font-family:comic sans ms; font-size:20px;}
