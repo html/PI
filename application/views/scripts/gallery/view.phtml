@@ -1,0 +1,15 @@
+<?
+$prev = $this->item->prevItem();
+$next = $this->item->nextItem()
+?>
+<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">До списку</a>
+<div class="center"><img src="<?=$this->item->getImageUrl()?>"/></div>
+<?=$this->item->getDescription()?>
+<div class="clear"></div>
+<?if($prev){?>
+<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $prev->id), null, true)?>">попереднє фото</a>
+<?}?>
+<?if($next){?>
+<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $next->id), null, true)?>">наступне фото</a>
+<?}?>
+

@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
-    <note priority="veryhigh" time="1249568034">
+    <note priority="veryhigh" time="1249568034" done="1250005577">
         Натягнути дизайн на сайт
+        <comment>
+            Sem зробив
+        </comment>
     </note>
     <note priority="medium" time="1249472665">
         Форум
@@ -32,6 +35,15 @@
     </note>
     <note priority="medium" time="1249563906">
         Гелерея
+        <note priority="medium" time="1249899783">
+            додати Controller Test
+        </note>
+        <note priority="medium" time="1249899800">
+            Теги
+        </note>
+        <note priority="medium" time="1249899805">
+            Коментарі
+        </note>
     </note>
     <note priority="medium" time="1249563923">
         Додати ссилки на погоду і нерухомість

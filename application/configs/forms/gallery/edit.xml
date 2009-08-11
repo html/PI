@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<zend-config>
+  <elements>
+    <!--    <file type="file">
+      <options label="Файл">
+        <validators>
+          <extension validator="File_Extension">
+            <options>
+              <extension>png,jpg</extension>
+            </options>
+          </extension>
+          <isimage validator="File_IsImage"/>
+          <upload validator="File_Upload"/>-->
+          <!--<uniquerecord validator="Validate_BasenameNotInDatabase"/>-->
+          <!--</validators>
+      </options>
+    </file>-->
+    <description type="textarea">
+      <options label="Опис" required="1"/>
+    </description>
+    <submit>
+      <type>submit</type>
+      <options label="Зберегти"/>
+    </submit>
+  </elements>
+</zend-config>
+

@@ -43,3 +43,4 @@
         );
 
         unset($user);
+        restore_error_handler();
