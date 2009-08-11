@@ -27,5 +27,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
     }
+
+    public function _initAutoload()
+    {
+        require_once 'Lsdev/Loader.php';
+        Zend_Loader_Autoloader::getInstance()->pushAutoloader(array('Lsdev_Loader', 'autoload'));
+    }
+
+    public function _initPaginator()
+    {
+        Zend_Paginator::setDefaultItemCountPerPage(3);
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
+    }
 }
 

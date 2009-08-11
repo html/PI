@@ -8,3 +8,8 @@ a:link.top {padding-left: 15px; font-family:tahoma; font-size:12px;color:black; 
 a:visited.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB56; text-decoration:none; font-weight:bold; text-align:left;}
 a:hover.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB56; text-decoration:underline; font-weight:bold; text-align}
 .joke {text-align:left; color:#000000; font-family:comic sans ms; font-size:20px;}
+.fl {float:left;}
+.fr {float:right;}
+.clear {clear:both;font-size:0;}
+.message { border:3px solid #ff9933; padding:3px; }
+.error {border:3px solid red; padding:3px; margin:0; }

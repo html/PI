@@ -3,11 +3,11 @@
 <head>  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title><?= $this->escape($this->title)?></title>
+  <base href="http://pi/"/>
   <?=$this->headLink()->appendStylesheet('css/global.css')?>
   <?=$this->headScript()?>
 </head> 
-</HEAD>
-<BODY topmargin="0" bgcolor="#488EC2">
+<body topmargin="0" bgcolor="#488EC2">
 <table cellpadding="0" cellspacing="0" align="center" width="960" height="30" border="0">
 	<tr height="100">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
@@ -61,17 +61,17 @@
 						<!--end memu table-->
 					</td>
 					<td width="15"><p class="sp">&nbsp;</p></td>
-					<td width="700" align="center" valign="top">
-						<p class="pagetitle"><!--Головна--><hr color="#FFAB56;" width="685" size="2"></p>
-						<p class="txt">
+					<td width="700" align="left" valign="top">
 <?if($this->errors){foreach($this->errors as $error){?>
  <div class="error"><?=$error?></div>
 <?}}?>
 <?if($this->messages){foreach($this->messages as $message){?>
  <div class="message"><?=$message?></div>
 <?}}?>
+<hr color="#FFAB56;" width="685" size="2">
+<div>
 <?= $this->layout()->content?>
-                         </p>
+</div>
 					</td>
 					<td width="15"><p class="sp">&nbsp;</p></td>
 				</tr>

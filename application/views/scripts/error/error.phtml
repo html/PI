@@ -1,17 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Zend Framework Default Application</title>
-</head>
-<body>
-  <h1>An error occurred</h1>
-  <h2><?= $this->message ?></h2>
+<?if($this->code == 404){?>
+ Запрошеної сторінки не існує, можливо її видалив адміністратор або ви помилились при вводі url
+<?}?>
+<?if($this->code == 500){?>
+ Сталась помилка будь ласка повідомте адміністратора сайту про неї
+<?}?>
 
   <? if ('development' == APPLICATION_ENV && $this->exception): ?>
   <div style="position:absolute;left:0;top:0;background:white;border:1px solid black">
     <?$this->headScript()->appendFile('/js/jquery-1.3.2.js')->appendFile('/js/common.js')?>
-    <a id="togglelink" href="#" style="display:block;width:20px;height:20px"><?=$this->cDebugAreaVisible ? '-' : '+'?></a>
+    <a id="togglelink" href="javascript:;" style="display:block;width:20px;height:20px"><?=$this->cDebugAreaVisible ? '-' : '+'?></a>
     <div id="debugarea" style="display:<?=$this->cDebugAreaVisible ? 'block' : 'none'?>">
   <h3>Exception information:</h3>
   <p>
@@ -38,6 +35,3 @@ $(function(){
 });
 </script>
   <? endif ?>
-
-</body>
-</html>

@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class IndexController extends ControllerAction
 {
 
     public function init()
@@ -10,6 +10,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $this->setTitle("Головна сторінка");
       // $this->_redirect('/forum');
     }
 

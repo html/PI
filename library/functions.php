@@ -241,3 +241,15 @@ function mydebugbacktrace()
     }
     exit;
 }
+
+function __exit(){
+    $front = Zend_Controller_Front::getInstance();
+    $channel  = Zend_Wildfire_Channel_HttpHeaders::getInstance();
+    //$channel->setRequest(new Zend_Controller_Request_Http());
+    //$channel->setResponse(new Zend_Controller_Response_Http());
+    $channel->getResponse();
+    $channel->getRequest();
+    $channel->flush();
+    $channel->getResponse()->sendHeaders();
+    //xdebug_get_code_coverage();
+}
