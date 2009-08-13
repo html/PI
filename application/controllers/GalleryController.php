@@ -32,6 +32,10 @@ class GalleryController extends ControllerAction
             $file->addValidator(
                 new Validate_BasenameNotInDatabase('files', 'name', null, $this->getModel()->getAdapter())
             );
+
+            $file->addFilter(
+                new Filter_File_ImageResize(null)
+            );
         }
 
         return $form;
