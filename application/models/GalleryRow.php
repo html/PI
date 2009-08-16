@@ -38,11 +38,21 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
         }
 
         $file = $this->_form->getElement('file');
+
+        $info = $file->getFileInfo();
+        $filebasename = $info['file']['name'];
         $file->setDestination($this->_filesDirectory)->receive();
 
+        #XXX Doesn't work
+        #$filename = $file->getFileName();
+        #
+
+        $info = $file->getFileInfo();
+        $filename = $info['file']['tmp_name'];
+        
         $this->__set('scope', 'images');
-        $this->__set('name', $file->getValue());
-        $this->__set('file', file_get_contents($file->getFileName()));
+        $this->__set('name', $filebasename);
+        $this->__set('file', file_get_contents($filename));
 
         $data = $this->_form->getValues();
         unset($data['file']);
