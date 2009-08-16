@@ -9,20 +9,20 @@ class Image_Adapter_Gd extends Image_Adapter_Abstract
     public function __construct($config = null)
     {
         if(isset($config['filename'])){
-            $this->setFilename($config['filename']);
+            $this->setFileName($config['filename']);
 
             $mime = $this->getMimeType();
             $type = end(explode('/', $mime));
             $func = 'imagecreatefrom' . $type;
 
             if(!function_exists($func)){
-                throw new Exception("Unknown image mime type $mime for filename {$this->getFilename()}. Cannot create image");
+                throw new Exception("Unknown image mime type $mime for filename {$this->getFileName()}. Cannot create image");
             }
 
-            $resource = $func($this->getFilename());
+            $resource = $func($this->getFileName());
 
             if(!is_resource($resource)){
-                throw new Exception("Cannot create image from {$this->getFilename()}");
+                throw new Exception("Cannot create image from {$this->getFileName()}");
             }
 
             $this->setResource($resource);
@@ -45,17 +45,19 @@ class Image_Adapter_Gd extends Image_Adapter_Abstract
             throw new Exception("Filed to scale image");
         }
 
-        $scaledImage = new self(compact('width', 'height'));
+        $this->_phpImageSize = null;
+        $this->setResource($resource);
 
-        return $scaledImage
-            ->setMimeType($this->getMimeType())
-            ->setResource($resource);
+        return $this;
     }
 
     public function getPhpImageSize()
     {
         if(is_null($this->_phpImageSize)){
-            $this->_phpImageSize = getimagesize($this->getFilename());
+            if(!Zend_Loader::isReadable($this->getFileName())){
+                throw new Exception("Cannot read image information from {$this->getFileName()}");
+            }
+            $this->_phpImageSize = getimagesize($this->getFileName());
         }
 
         return $this->_phpImageSize;
@@ -135,7 +137,7 @@ class Image_Adapter_Gd extends Image_Adapter_Abstract
     {
         $func = array(
             $this->getResource(),
-            is_null($filename) ? $this->getFilename() : $filename
+            is_null($filename) ? $this->getFileName() : $filename
         );
 
         if ('jpeg' == end(explode('/', $mime))) {

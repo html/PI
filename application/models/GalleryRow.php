@@ -86,6 +86,11 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
         return Zend_Layout::getMvcInstance()->getView()->escape('/files/thumbnails/' . $this->name);
     }
 
+    public function getImageViewUrl()
+    {
+        return Zend_Layout::getMvcInstance()->getView()->escape('/files/view/' . $this->name);
+    }
+
     public function getImagePath()
     {
         return $this->getFilesDirectory() . '/' . $this->name;
@@ -94,6 +99,11 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
     public function getImageThumbnailPath()
     {
         return dirname($this->getFilesDirectory()) . '/thumbnails/' . $this->name;
+    }
+
+    public function getImageViewPath()
+    {
+        return dirname($this->getFilesDirectory()) . '/view/' . $this->name;
     }
 
     public function __call($func, $args)

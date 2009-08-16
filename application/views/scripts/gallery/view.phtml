@@ -3,7 +3,7 @@ $prev = $this->item->prevItem();
 $next = $this->item->nextItem()
 ?>
 <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">До списку</a>
-<div class="center"><img src="<?=$this->item->getImageUrl()?>"/></div>
+<div class="center"><img src="<?=$this->item->getImageViewUrl()?>"/></div>
 <?=$this->item->getDescription()?>
 <div class="clear"></div>
 <?if($prev){?>
