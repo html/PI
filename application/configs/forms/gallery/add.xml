@@ -10,7 +10,6 @@
             </options>
           </extension>
           <isimage validator="File_IsImage"/>
-          <upload validator="File_Upload"/>
           <imagesize validator="File_ImageSize">
             <options>
               <minwidth>150</minwidth>
