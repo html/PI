@@ -2,7 +2,7 @@
 
 
 
-class Filter_File_ImageResize extends Filter_File_ImageEditor
+class Filter_File_ImageResize implements Zend_Filter_Interface
 {
     const RESIZE_BY_WIDTH = 'resizeByWidth';
     const RESIZE_BY_HEIGHT = 'resizeByHeight';
@@ -46,7 +46,7 @@ class Filter_File_ImageResize extends Filter_File_ImageEditor
             throw new Zend_Filter_Exception("File '{$this->_filename}' is not writable");
         }
 
-        $this->resizeBy(self::RESIZE_BY_WIDTH, 1000);
+        $this->resizeBy2(self::RESIZE_BY_WIDTH, 1000);
 
         return $this->_filename;
     }
@@ -86,6 +86,46 @@ class Filter_File_ImageResize extends Filter_File_ImageEditor
         );
 
         imagejpeg($targetImage, $filename, 100);
+    }
+
+    public function resizeBy2($type, $value)
+    {
+        $image = Image_Factory::factory($this->getFilename());
+
+        $width = $image->getWidth();
+        $height = $image->getHeight();
+
+        if($type == self::RESIZE_BY_WIDTH){
+
+            if($value > $width){
+                return;
+            }
+
+            $targetwidth = $value;
+            $targetheight = $this->_calculateDimensions($height, $width, $value);
+        }else if($type == self::RESIZE_BY_HEIGHT){
+
+            if($value > $height){
+                return;
+            }
+
+            $targetheight = $value;
+            $targetwidth = $this->_calculateDimensions($width, $height, $value);
+        }else{
+            throw new Exception("Not implemented yet");
+        }
+
+
+        $result = $image->scaleTo(
+            $targetwidth,
+            $targetheight
+        )->save(
+            $this->getFilename()
+        );
+
+        if(!$result){
+            throw new Exception("Cannot save image");
+        }
     }
 
     protected function _calculateDimensions($dim1, $dim2, $value)

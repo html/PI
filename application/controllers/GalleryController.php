@@ -96,7 +96,9 @@ class GalleryController extends ControllerAction
 
         $data->delete();
 
-        $this->userMessage("Успішно видалено")->redirect('list');
+        $this->userMessage("Успішно видалено")->redirect('list', null, null, array(
+            'page' => $this->_getParam('page', null)
+        ));
     }
 
     public function getUploadDir()
