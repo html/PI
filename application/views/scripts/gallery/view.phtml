@@ -1,9 +1,9 @@
 <?
 $prev = $this->item->prevItem();
-$next = $this->item->nextItem()
+$next = $this->item->nextItem();
 ?>
 <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">До списку</a>
-<div class="center"><img src="<?=$this->item->getImageViewUrl()?>"/></div>
+<div class="center"><a href="<?=$this->item->getImageUrl()?>" onclick="return false" class="lightbox"><img src="<?=$this->item->getImageViewUrl()?>"/></a></div>
 <?=$this->item->getDescription()?>
 <div class="clear"></div>
 <?if($prev){?>
@@ -12,4 +12,4 @@ $next = $this->item->nextItem()
 <?if($next){?>
 <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $next->id), null, true)?>">наступне фото</a>
 <?}?>
-
+<?=$this->render('lightbox.phtml')?>

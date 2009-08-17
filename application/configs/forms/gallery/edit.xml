@@ -15,11 +15,11 @@
           <!--</validators>
       </options>
     </file>-->
-    <description type="textarea">
+    <description type="editor">
       <options label="Опис" required="1"/>
     </description>
     <submit>
-      <type>submit</type>
+      <type>submitButton</type>
       <options label="Зберегти"/>
     </submit>
   </elements>

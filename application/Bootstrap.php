@@ -11,6 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $view = new Zend_View;
 
+        Zend_Dojo::enableView($view);
         Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->setView($view);
     }
 

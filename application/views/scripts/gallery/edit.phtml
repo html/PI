@@ -1,6 +1,14 @@
 <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'list', 'id' => null))?>">До списку</a>
 <div class="clear"></div>
-<img src="<?=$this->item->getImageUrl()?>"/>
-<div class="clear"></div>
+<div class="fl">
 <img src="<?=$this->item->getImageThumbnailUrl()?>"/>
+</div>
+<div class="fl">
+<a class="lightbox" onclick="return false" href="<?=$this->item->getImageViewUrl()?>">Переглянути середній варіант</a>
+<div class="clear"></div>
+<a class="lightbox" onclick="return false" href="<?=$this->item->getImageUrl()?>">переглянути повний варіант</a>
+</div>
+<div class="clear"></div>
+
 <?=$this->form?>
+<?=$this->render('lightbox.phtml')?>

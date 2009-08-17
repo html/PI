@@ -1,0 +1,21 @@
+<?$this->dojo()->requireModule('dojox.image.Lightbox');
+$this->headLink()->appendStylesheet('js/dojo/dojox/image/resources/Lightbox.css');?>
+<?$this->dojo()->javascriptCaptureStart()?>
+;(function(d, $){
+    d.addOnLoad(function(){
+        dialog = (new dojox.image.Lightbox());
+        dialog.startup();
+        //dialog.duration = 0;
+        dialog.modal = true;
+        dialog.onClick = dialog.hide;
+
+        dojo.forEach($('a.lightbox'), function(){
+            var link=arguments[0]
+            dojo.connect(link, 'onclick', function(){
+                dialog.href =  "<?=$this->item->getImageUrl()?>";
+                dialog.show();
+            });
+        })
+    });
+})(dojo, dojo.query);
+<?$this->dojo()->javascriptCaptureEnd()?>

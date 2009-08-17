@@ -13,3 +13,7 @@ a:hover.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB
 .clear {clear:both;font-size:0;}
 .message { border:3px solid #ff9933; padding:3px; }
 .error {border:3px solid red; padding:3px; margin:0; }
+
+#dojoxLightboxDialog {
+    overflow:hidden;
+}
