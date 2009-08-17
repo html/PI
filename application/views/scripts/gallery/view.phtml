@@ -1,15 +1,8 @@
-<?
-$prev = $this->item->prevItem();
-$next = $this->item->nextItem();
-?>
-<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">До списку</a>
-<div class="center"><a href="<?=$this->item->getImageUrl()?>" onclick="return false" class="lightbox"><img src="<?=$this->item->getImageViewUrl()?>"/></a></div>
-<?=$this->item->getDescription()?>
+<?=$this->render('gallery/view_navbar.phtml')?>
 <div class="clear"></div>
-<?if($prev){?>
-<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $prev->id), null, true)?>">попереднє фото</a>
-<?}?>
-<?if($next){?>
-<a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $next->id), null, true)?>">наступне фото</a>
-<?}?>
+<center><a href="<?=$this->item->getImageUrl()?>" onclick="return false" class="lightbox"><img src="<?=$this->item->getImageViewUrl()?>"/></a></center>
+<div class="clear"></div>
+<?=$this->render('gallery/view_navbar.phtml')?>
+<div class="clear"></div>
+<?=$this->item->getDescription()?>
 <?=$this->render('lightbox.phtml')?>
