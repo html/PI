@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <zend-config>
+  <prefixPath>
+    <prefix>Form</prefix>
+    <path>Pi/Form</path>
+  </prefixPath>
   <elements>
     <!--    <file type="file">
       <options label="Файл">
@@ -15,6 +19,12 @@
           <!--</validators>
       </options>
     </file>-->
+    <tags type="viewScript">
+      <options label="!!!!!!!!!!!!!!!!!!!!!!1" required="1" viewScript="formElements/tagsDnd.phtml"/>
+    </tags>
+    <imagepreview type="viewScript">
+      <options label="!!!!!!!!!!!!!!!!" viewScript="formElements/imagePreview.phtml"/>
+    </imagepreview>
     <description type="editor">
       <options label="Опис" required="1"/>
     </description>

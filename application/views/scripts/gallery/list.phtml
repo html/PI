@@ -6,8 +6,8 @@
  <?foreach($this->data as $item){?>
 <div style="padding:10px 0;">
 <div>
-  <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'edit', 'id' => $item->id))?>">Редагувати</a> | 
-  <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'delete', 'id' => $item->id))?>">Видалити</a></div>
+  <a class="icon edit" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'edit', 'id' => $item->id))?>">Редагувати</a> | 
+  <a class="icon delete" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'delete', 'id' => $item->id))?>">Видалити</a></div>
   <div class="clear"></div>
   <div class="fl">
   <a href="<?=$this->url(array('controller' => 'gallery', 'action' => 'view', 'id' => $item->id))?>"><img width="150" src="<?=$item->getImageThumbnailUrl()?>"/></a>

@@ -20,25 +20,36 @@ class GalleryController extends ControllerAction
 
     public function getForm()
     {
-        $form = parent::getForm()
-            ->setEnctype(Zend_Form::ENCTYPE_MULTIPART)
-            ->setMethod(Zend_Form::METHOD_POST);
+        if(is_null($this->_form)){
+            $form = parent::getForm()
+                ->setEnctype(Zend_Form::ENCTYPE_MULTIPART)
+                ->setMethod(Zend_Form::METHOD_POST);
 
-        $file = $form->getElement('file');
+            $file = $form->getElement('file');
 
-        if($file){
-            require_once 'Validate/BasenameNotInDatabase.php';
+            if($file){
+                require_once 'Validate/BasenameNotInDatabase.php';
 
-            $file->addValidator(
-                new Validate_BasenameNotInDatabase('files', 'name', null, $this->getModel()->getAdapter())
-            );
+                $file->addValidator(
+                    new Validate_BasenameNotInDatabase('files', 'name', null, $this->getModel()->getAdapter())
+                );
 
-            $file->addFilter(
-                new Filter_File_ImageResize(null)
-            );
+                $file->addFilter(
+                    new Filter_File_ImageResize(null)
+                );
+            }
+            
+            /*
+            $form->addDisplayGroup(array(
+                'tag'
+            ), 'tags2');*/
+
+
+            //de($form->getDecorators());
+            $form->addDecorator(new Zend_Dojo_Form_Decorator_BorderContainer);
         }
 
-        return $form;
+        return $this->_form;
     }
 
     protected function _addSave($data)
@@ -68,6 +79,26 @@ class GalleryController extends ControllerAction
 
         $this->getForm()->isValid($data->toArray());
         $this->view->item = $data;
+
+
+        $tags = array();
+        for($i=1;$i<10;$i++){
+            $tags[] = array(
+                'title' => 'WeightTitle ' . $i,
+                'weight' => $i
+            );
+        }
+
+        $cloud = new Zend_Tag_Cloud;
+        $cloud->setTags($tags);
+
+        /*
+        ($cloud->getCloudDecorator()->setHtmlTags(array(
+            'div' => array('class' => 'Zend_Tag_Cloud')
+        )));*/
+        $cloud->setTagDecorator(new Tag_Cloud_Decorator_HtmlTagWithoutLinks);
+        $cloud->getCloudDecorator()->setHtmlTags(array('ul' => array('id' => 'tagsSource', 'class' => 'tagCloud')));
+        $this->view->tags = $cloud;
     }
 
     protected function _editSuccess($scope)
