@@ -9,7 +9,7 @@ $this->headLink()->appendStylesheet('js/dojo/dojox/image/resources/Lightbox.css'
         dialog.modal = true;
         dialog.onClick = dialog.hide;
 
-        dojo.forEach($('a.lightbox'), function(){
+        $('a.lightbox').forEach(function(){
             var link=arguments[0]
             dojo.connect(link, 'onclick', function(){
                 dialog.href =  "<?=$this->item->getImageUrl()?>";

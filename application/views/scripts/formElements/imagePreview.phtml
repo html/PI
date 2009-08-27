@@ -1,0 +1,38 @@
+<?$this->dojo()->requireModule('dojox.image.Lightbox');
+$this->headLink()->appendStylesheet('js/dojo/dojox/image/resources/Lightbox.css');?>
+<div>
+<div class="fl">
+<img src="<?=$this->item->getImageThumbnailUrl()?>"/>
+</div>
+<div class="fl">
+<div class="clear"></div>
+<?=$this->button('middleview', 'Переглянути середній варіант')?><br/>
+<?=$this->button('fullview', 'переглянути повний варіант')?>
+</div>
+<div class="clear"></div>
+</div>
+<?$this->dojo()->javascriptCaptureStart()?>
+;(function(d, $){
+    d.addOnLoad(function(){
+        dialog = (new dojox.image.Lightbox());
+        dialog.modal = true;
+        dialog.onClick = dialog.hide;
+        dialog.startup();
+
+        var linkmap = {
+            'middleview' : "<?=$this->item->getImageViewUrl()?>",
+            'fullview' : "<?=$this->item->getImageUrl()?>"
+        };
+
+        var showBox = function(id){
+            return function(){
+                dialog.href = linkmap[id];
+                dialog.show();
+        }};
+        
+        ['middleview', 'fullview'].forEach(function(id){
+            dojo.connect(dojo.byId(id), 'onclick', showBox(id));
+        });
+    });
+})(dojo);
+<?$this->dojo()->javascriptCaptureEnd()?>

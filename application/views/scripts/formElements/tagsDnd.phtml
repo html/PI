@@ -1,0 +1,37 @@
+<div class="clear"></div>
+<div>
+<div class="fl">
+<ul id="tags" class="tagCloud"></ul>
+</div>
+<div class="fl">
+<?=$this->tags?>
+</div>
+</div>
+<div class="clear"></div>
+<?$this->dojo()
+->requireModule('dojox.fx')
+->requireModule("dojo.fx.easing")
+->requireModule('dojo.dnd.Source')
+->requireModule('dojo.dnd.Manager')?>
+<?$this->headLink()
+    ->appendStylesheet('js/dojo/dojo/resources/dnd.css')?>
+<?$this->dojo()->javascriptCaptureStart()?>
+debug = null;
+;(function(d, $){
+    d.addOnLoad(function(){
+        var nodes = $('#tagsSource > li');
+
+        target = new dojo.dnd.Target(dojo.byId('tags'));
+
+        nodes.forEach(function(item, index, all){
+            item.dndType = "text";
+            item.id = 'test' + index;
+            dojo.addClass(item, 'dojoDndItem');
+            //source.setItem('item'+index, item);
+            //debug = new dojo.dnd.Source(item, {class : 'source', type : 'text', dndType : 'text'});
+        });
+
+        source = new dojo.dnd.Source(dojo.byId('tagsSource'));
+    });
+})(dojo, dojo.query);
+<?$this->dojo()->javascriptCaptureEnd()?>
