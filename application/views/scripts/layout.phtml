@@ -1,3 +1,4 @@
+
 <?= $this->doctype() ?> <!-- This Line will output the doctype we set inside the bootstrap file -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>  
@@ -19,7 +20,7 @@
 	<tr height="100">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
 		<td width="926" background="images/grad.gif" align="left" valign="middle">
-			<img src="images/molotok.gif" style=" float:left;margin-left:20px;"><p class="joke">
+		<img src="images/gerb.jpg" style=" float:left;margin-left:20px;"><p class="joke">
 
 			<?= $this->title ? $this->title : "Нема заголовка"?>
 
@@ -52,6 +53,15 @@
 							<tr height="34">
 								<td width="181" height="34" align="center"><img src="images/menu_1.gif" width="181" height="34"></td>
 							</tr>
+<tr>
+								<td width="181" height="10" background="images/menu_2.gif">
+                                <a class="top" href="<?=$this->url(array('controller' => 'index', 'action' => 'index'), null, true)?>">Головна</a>
+								</td>
+							<tr>
+<tr>
+								<td width="181" height="10" background="images/menu_2.gif">
+                                <a class="top" href="<?=$this->url(array('controller' => 'forum', 'action' => 'index'), null, true)?>">Форум</a>
+								</td>
 							<tr>
 								<td width="181" height="10" background="images/menu_2.gif">
                                 <a class="top" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">Галерея</a>
