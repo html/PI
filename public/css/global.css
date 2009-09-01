@@ -21,9 +21,11 @@ a:hover.top {padding-left: 15px; font-family:tahoma; font-size:12px; color:#FFAB
 .icon {
     color:blue;
     text-decoration:none;
-    padding-left:18px;
+    padding:0 0 3px 18px;
     height:20px;
     line-height:20px;
+    display:inline;
+    border:0px;
 }
 
 .icon:hover {

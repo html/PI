@@ -276,6 +276,27 @@ class ControllerAction extends Zend_Controller_Action
             return $this->{$method_name}();
         }
 
+        if(preg_match('/(\w+)Action\z/', $function, $matches)){
+            $module = $this->getRequest()->getModuleName();
+
+            $controller = $this->getRequest()->getControllerName(); 
+
+            $filename =  join('/', array(
+                $this->getFrontController()->getControllerDirectory($module),
+                $controller,
+                $matches[1] . '.php'
+            ));
+
+            $className = ucfirst($controller) . '_' . ucfirst($matches[1]);
+
+            if(file_exists($filename)){
+                require_once $filename;
+                $action = new $className($this);
+                //$action->dispatch();
+                return $action;
+            }
+        }
+
         return parent::__call($function, $args);
     }
 
@@ -371,7 +392,8 @@ class ControllerAction extends Zend_Controller_Action
 
 			$this->_form = new $this->_formClassName;
 			$this->_form
-				->setConfig(new Zend_Config_Xml($this->getFormConfigFilename()));
+                ->setConfig(new Zend_Config_Xml($this->getFormConfigFilename()))
+                ->setMethod(Zend_Form::METHOD_POST);
             //$this->_form->addDecorator('captcha');
 
 		}
@@ -443,5 +465,35 @@ class ControllerAction extends Zend_Controller_Action
         throw $exception;
     }
 
+    public function exe($func, $args)
+    {
+        return call_user_func_array(
+            array($this, $func),
+            $args
+        );
+    }
 
+    public function get($key)
+    {
+        return $this->{$key};
+    }
+
+    public function set($key, $val)
+    {
+        return $this->{$key} = $val;
+    }
+
+    public function getItem($key='id', $method = 'getOne')
+    {
+        return ($this->getModel()->{$method}(
+            ($this->_getParam($key, 0))
+        ));
+    }
+
+    public function notFoundExceptionIfNot($conditional)
+    {
+        if(!$conditional){
+            $this->notFoundException();
+        }
+    }
 }

@@ -1,0 +1,21 @@
+<a href="<?=$this->url(array('controller' => 'articles', 'action' => 'add'))?>">Додати статтю</a>
+<?if($this->data->count()){?>
+<div class="clear"></div>
+<?=($this->data)?>
+<div class="clear"></div>
+ <?foreach($this->data as $item){?>
+<div style="padding:10px 0;">
+<div>
+  <a class="icon edit" href="<?=$this->url(array('controller' => 'articles', 'action' => 'edit', 'id' => $item->id))?>">Редагувати</a> | 
+  <a class="icon delete" href="<?=$this->url(array('controller' => 'articles', 'action' => 'delete', 'id' => $item->id))?>">Видалити</a></div>
+  <div class="clear"></div>
+    <div class="fl" style="width:450px"><?=$item->getDescription()?></div>
+  <div class="clear"></div>
+</div>
+    <?//$item->description?>
+ <?}?>
+<?}else{?>
+ Немає статей
+<?}?>
+<div class="clear"></div>
+<?=($this->data)?>
