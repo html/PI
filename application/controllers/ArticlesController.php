@@ -14,7 +14,7 @@ class ArticlesController extends ControllerAction
     public function listAction()
     {
         $this->setTitle('Статті');
-        $this->view->data = $this->getModel()->plistAll();
+        $this->view->data = $this->getModel()->plistAll($this->_getParam('page', 1));
     }
 
     public function deleteAction()
