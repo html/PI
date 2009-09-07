@@ -47,6 +47,7 @@ class GalleryModel extends Table
 
     protected function _plistAllQuery($page)
     {
-        return array($this->select(), $page);
+        $this->setPage($page);
+        return ($this->select());
     }
 }

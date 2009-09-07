@@ -8,7 +8,7 @@
 <div>
   <a class="icon edit" href="<?=$this->url(array('controller' => 'articles', 'action' => 'edit', 'id' => $item->id))?>">Редагувати</a> | 
   <a class="icon delete" href="<?=$this->url(array('controller' => 'articles', 'action' => 'delete', 'id' => $item->id))?>">Видалити</a></div>
-  <h2><?=$item->getTitle()?></h2>
+  <h2><a href="<?=$this->url(array('controller' => 'articles', 'action' => 'edit', 'id' => $item->id))?>"><?=$item->getTitle()?></a></h2>
   <div class="clear"></div>
     <div class="fl" style="width:450px"><?=$item->getDescription()?></div>
   <div class="clear"></div>

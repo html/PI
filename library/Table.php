@@ -44,7 +44,7 @@ class Table extends Zend_Db_Table_Abstract
             if(isset($this->_queryTypes[$queryType])){
                 $temp = (str_split($matches[2]));
                 $temp[0] = strtolower($temp[0]);
-                $method_names = array('_' . join($temp) . 'Query');
+                $method_names = array('_' . $queryType . $matches[2] . 'Query', '_' . join($temp) . 'Query');
                 $queryMethod = $this->_queryTypes[$queryType];
 
                 foreach($method_names as $method){
