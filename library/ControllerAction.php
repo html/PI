@@ -31,6 +31,7 @@ class ControllerAction extends Zend_Controller_Action
     public function init()
     {
 
+        $this->view->assign('userData', (object)Zend_Auth::getInstance()->getStorage()->read());
         $this->_initModel();
         $this->_initMenu();
         $this->initAcl();
@@ -52,6 +53,9 @@ class ControllerAction extends Zend_Controller_Action
 
     protected function _initMenu()
     {
+        $nav = Zend_Registry::get('nav');
+        $this->view->navigation()->setContainer($nav);
+        $this->view->currentMenu = ($nav->findOneBy('active', true));
     }
 
     /*
@@ -496,4 +500,13 @@ class ControllerAction extends Zend_Controller_Action
             $this->notFoundException();
         }
     }
+
+    public function redirectBack()
+    {
+        $this->_redirect(
+            $this->getRequest()->getServer('HTTP_REFERER', '/')
+        );
+        return $this;
+    }
+
 }
