@@ -225,4 +225,15 @@ foreach ($cache->obtain_hooks() as $hook)
 	@include($phpbb_root_path . 'includes/hooks/' . $hook . '.' . $phpEx);
 }
 
+require_once dirname(__FILE__) . '/../../library/functions.php';
+
+$css = '';
+$dir = dirname(__FILE__);
+
+foreach (glob(dirname(__FILE__) . '/styles/pi/theme/*.css') as $val) {
+    $val = str_replace($dir,'', $val);
+    $css .= '<link href="' . $val . '" rel="stylesheet" type="text/css"/>';
+}
+
+$template->assign_var('CSS', $css);
 ?>

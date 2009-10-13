@@ -19,7 +19,7 @@
 <table cellpadding="0" cellspacing="0" align="center" width="960" height="30" border="0">
 	<tr height="100">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
-		<td width="926" background="images/grad.gif" align="left" valign="middle">
+		<td width="915" background="images/grad.gif" align="left" valign="middle">
 		<img src="images/gerb.jpg" style=" float:left;margin-left:20px;"><p class="joke">
 
 			<?= $this->title ? $this->title : "Нема заголовка"?>
@@ -31,13 +31,13 @@
 	</tr>
 	<tr height="25">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
-		<td width="926" bgcolor="#D7E5FA"><p class="sp">&nbsp;</p></td>
+        <td width="915" bgcolor="#D7E5FA" style="padding:5px;"><?=$this->navigation()->breadcrumbs()?></td>
 		<td width="17" background="images/right.gif"><p class="sp">&nbsp;</p></td>
 	</tr>
 	<tr height="25">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
-		<td width="926" bgcolor="#FFFFFF" align="center" valign="top">
-			<table cellpadding="0" cellspacing="0" align="center" width="926" height="10" border="0">
+		<td width="915" bgcolor="#FFFFFF" align="center" valign="top">
+			<table cellpadding="0" cellspacing="0" align="center" width="915" height="10" border="0">
 				<tr height="10"> 
 					<td width="15"><p class="sp">&nbsp;</p></td>
 					<td width="181"><p class="sp">&nbsp;</p></td>
@@ -60,6 +60,7 @@
                                 <a class="top" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">Галерея</a><br/>
                                 <a class="top" href="<?=$this->url(array('controller' => 'articles', 'action' => 'index'), null, true)?>">Статті</a><br/>
 
+                                <?=$this->render('authBlock.phtml')?>
 									<?/*<a href="index.htm" class="top">Головна</a><br>
 									<a href="news.htm" class="top">Новини</a><br>
 									<a href="foods.htm" class="top">Каталог товарів</a><br>
@@ -100,7 +101,7 @@
 	</tr>
 	<tr height="25">
 		<td width="17" background="images/left.gif"><p class="sp">&nbsp;</p></td>
-		<td width="926"  bgcolor="#D7E5FA"><p class="authors"><!--place for author notes--></p></td>
+		<td width="915"  bgcolor="#D7E5FA"><p class="authors"><!--place for author notes--></p></td>
 		<td width="17" background="images/right.gif"><p class="sp">&nbsp;</p></td>
 	</tr>
 </table>

@@ -38,9 +38,16 @@
         require_once 'Zend/Auth.php';
         require_once 'Auth/Storage/Phpbbsession.php';
 
-        Zend_Auth::getInstance()->setStorage(
+        $auth = Zend_Auth::getInstance();
+
+        $auth->setStorage(
             new Auth_Storage_Phpbbsession($user)
         );
 
-        unset($user);
+        $data = $auth->getStorage()->read();
+        $data['session_page'] = $_SERVER['REQUEST_URI'];
+        $auth->getStorage()->write($data);
+
+        define('IS_ADMIN', ($auth->hasIdentity() && ($ident = $auth->getIdentity()) && $ident['group_id'] == 5));
+        unset($user, $ident, $auth);
         restore_error_handler();

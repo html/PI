@@ -2705,6 +2705,8 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 	// Assign credential for username/password pair
 	$credential = ($admin) ? md5(unique_id()) : false;
 
+    $redirect = request_var('redirect', $user->data['session_page']);
+
 	$s_hidden_fields = array(
 		'redirect'	=> $redirect,
 		'sid'		=> $user->session_id,

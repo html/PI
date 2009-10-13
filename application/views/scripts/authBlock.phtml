@@ -1,0 +1,13 @@
+<?
+$loginUrl = "/forum/ucp.php?mode=login";
+$logoutUrl = append_sid("/forum/ucp.php", 'mode=logout', true, $this->userData->session_id);
+ //"/forum/ucp.php?mode=logout";
+?>
+<br />
+<?if(Zend_Auth::getInstance()->hasIdentity()){?>
+<span style="padding:15px"><?=$this->userData->username_clean?></span>
+<br />
+<a class="top" href="<?=$logoutUrl?>">Вийти</a>
+<?}else{?>
+<a class="top" href="<?=$loginUrl?>">Увійти на сайт</a>
+<?}?>

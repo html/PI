@@ -7,3 +7,8 @@ Deny from All
 Order Allow,Deny
 Deny from All
 </Files>
+
+php_flag session.use_trans_sid off
+php_flag session.use_only_cookies on
+php_flag session.use_cookies on
+php_flag session.cookie_secure on
