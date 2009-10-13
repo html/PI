@@ -40,5 +40,48 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Paginator::setDefaultItemCountPerPage(3);
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
     }
+
+    public function _initNavigation()
+    {
+        $this->_initCache();
+        $config = APPLICATION_PATH . '/configs/navigation.php';
+        $cache = Zend_Cache::factory('File', 'File', array('automatic_serialization' => true, 'master_file' => $config), array());
+
+        if(!($navigation = $cache->load('navigation'))){
+            $navigation = new Zend_Navigation(require $config);
+            $cache->save($navigation, 'navigation');
+        }
+
+        Zend_Registry::set('nav', $navigation);
+    }
+
+    public function _initCache()
+    {
+        Zend_Registry::set('cache', Zend_Cache::factory('Core', 'File', array('automatic_serialization' => true), array()));
+    }
+
+    public function _initAcl()
+    {
+        $this->_initNavigation();
+        $acl = new Zend_Acl;
+        $acl->addRole(new Zend_Acl_Role('guest'))
+            ->addRole(new Zend_Acl_Role('user'))
+            ->addRole(new Zend_Acl_Role('admin'))
+            ->add(new Zend_Acl_Resource('add'))
+            ->add(new Zend_Acl_Resource('edit'))
+            ->add(new Zend_Acl_Resource('delete'))
+            ->add(new Zend_Acl_Resource('view'))
+            ->allow('admin', array('view', 'add', 'edit', 'delete'))
+            ->allow('guest', 'view')
+            ->allow('user', 'view');
+
+        Controller_Plugin_AclIntegration::setNavigation(Zend_Registry::get('nav'));
+        Controller_Plugin_AclIntegration::setDefaultPrivilege('view');
+        Controller_Plugin_AclIntegration::setAcl($acl);
+        Controller_Plugin_AclIntegration::setRole('guest');
+
+        (Zend_Controller_Front::getInstance()->registerPlugin(new Controller_Plugin_AclIntegration));
+    }
+
 }
 

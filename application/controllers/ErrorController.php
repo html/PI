@@ -19,10 +19,17 @@ class ErrorController extends ControllerAction
                 $this->setTitle('Сторінку не знайдено');
                 break;
             default:
-                // application error 
-                $this->getResponse()->setHttpResponseCode(500);
-                $this->setTitle('Сталася помилка');
-                break;
+                if(is_a($errors->exception, Controller_Plugin_AclIntegration_Exception)){
+                    $this->_helper->viewRenderer->setScriptAction('forbidden');
+                    $this->getResponse()->setHttpResponseCode(403);
+                    ($this->getResponse()->clearBody());
+                    break;
+                }else{
+                    // application error 
+                    $this->getResponse()->setHttpResponseCode(500);
+                    $this->setTitle('Сталася помилка');
+                    break;
+                }
         }
         
         $this->view->exception = $errors->exception;

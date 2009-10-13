@@ -136,5 +136,11 @@ class GalleryController extends ControllerAction
     {
         return parent::getUploadDir() . 'images';
     }
+
+    protected function _viewAction()
+    {
+        parent::_viewAction();
+        $this->setTitle($this->view->item->getTitle());
+    }
 }
 

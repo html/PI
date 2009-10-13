@@ -3,10 +3,7 @@
 class IndexController extends ControllerAction
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
+    protected $_modelClass = false;
 
     public function indexAction()
     {

@@ -47,7 +47,7 @@ class Auth_Storage_Phpbbsession implements Zend_Auth_Storage_Interface
      */
     public function isEmpty()
     {
-        return $this->getPhpbbSessionInstance()->data['user_id'] == ANONYMOUS;
+        return $this->getPhpbbSessionInstance()->data['group_id'] == ANONYMOUS;
     }
 
     /**
@@ -57,6 +57,7 @@ class Auth_Storage_Phpbbsession implements Zend_Auth_Storage_Interface
      */
     public function read()
     {
+        return $this->getPhpbbSessionInstance()->data;
         throw new Exception('No implemented yet');
         //($this->getPhpbbSessionInstance());
     }
@@ -64,12 +65,12 @@ class Auth_Storage_Phpbbsession implements Zend_Auth_Storage_Interface
     /**
      * Defined by Zend_Auth_Storage_Interface
      *
-     * @return boolean
+     * @return fluent
      */
     public function write($contents)
     {
-        throw new Exception('No implemented yet');
-        //($this->getPhpbbSessionInstance());
+        $this->getPhpbbSessionInstance()->data = $contents;
+        return $this;
     }
 
     /**

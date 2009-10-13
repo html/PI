@@ -1,4 +1,3 @@
-
 <?= $this->doctype() ?> <!-- This Line will output the doctype we set inside the bootstrap file -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>  
@@ -55,10 +54,10 @@
 							</tr>
 <tr>
 								<td width="181" height="10" background="images/menu_2.gif">
-                                <a class="top" href="<?=$this->url(array('controller' => 'index', 'action' => 'index'), null, true)?>">Головна</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'forum', 'action' => 'index'), null, true)?>">Форум</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), null, true)?>">Галерея</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'articles', 'action' => 'index'), null, true)?>">Статті</a><br/>
+                                <a class="top" href="<?=$this->url(array('controller' => 'index', 'action' => 'index'), 'default', true)?>">Головна</a><br/>
+                                <a class="top" href="<?=$this->url(array('controller' => 'forum', 'action' => 'index'), 'default', true)?>">Форум</a><br/>
+                                <a class="top" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), 'default', true)?>">Галерея</a><br/>
+                                <a class="top" href="<?=$this->url(array('controller' => 'articles', 'action' => 'index'), 'default', true)?>">Статті</a><br/>
 
                                 <?=$this->render('authBlock.phtml')?>
 									<?/*<a href="index.htm" class="top">Головна</a><br>

@@ -188,7 +188,7 @@ function dw(){
 }
 
 
-function todo($str){
+function todo($str=''){
     $b = debug_backtrace();
     die(sprintf("TODO: <b>%s</b> <BR>\nFILE: &nbsp;&nbsp;<b>%s</b>,<BR>\nLINE:&nbsp; <b>%s</b>", $str,$b[0]['file'],$b[0]['line']));
 }
@@ -252,4 +252,25 @@ function __exit(){
     $channel->flush();
     $channel->getResponse()->sendHeaders();
     //xdebug_get_code_coverage();
+}
+
+function truncate($string, $length = 80, $etc = '...',
+                                  $break_words = false, $middle = false)
+{
+    if ($length == 0)
+        return '';
+
+    if (strlen($string) > $length) {
+        $length -= strlen($etc);
+        if (!$break_words && !$middle) {
+            $string = preg_replace('/\s+?(\S+)?$/', '', substr($string, 0, $length+1));
+        }
+        if(!$middle) {
+            return substr($string, 0, $length).$etc;
+        } else {
+            return substr($string, 0, $length/2) . $etc . substr($string, -$length/2);
+        }
+    } else {
+        return $string;
+    }
 }

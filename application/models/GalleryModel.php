@@ -20,7 +20,7 @@ class GalleryModel extends Table
         }
 
         $select->setIntegrityCheck(false)
-            ->joinLeft('gallery_info', 'gallery_info.file_id = files.id', array('description'));
+            ->joinLeft('gallery_info', 'gallery_info.file_id = files.id', array('title', 'description'));
 
         return $select;
     }

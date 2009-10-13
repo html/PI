@@ -5,6 +5,7 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
     protected $_filesDirectory;
     protected $_form;
     protected $_defaultValues = array(
+        'title' => 'заголовок відсутній',
         'description' => 'Опис відсутній'
     );
 
@@ -175,6 +176,11 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
     public function nextItem()
     {
         return $this->getTable()->getNext($this->id);
+    }
+
+    public function getTitle()
+    {
+        return truncate(strip_tags($this->description));
     }
 }
 
