@@ -120,13 +120,13 @@ return array(
             array(
                 'label' => 'Статті',
                 'controller' => 'articles',
-                'action' => 'index',
+                'action' => 'list',
                 'pages' => $articles
             ),
             array(
                 'label' => 'Галерея',
                 'controller' => 'gallery',
-                'action' => 'index',
+                'action' => 'list',
                 'pages' => $gallery
             ),
         )

@@ -8,7 +8,7 @@ class ArticlesController extends ControllerAction
 
     public function indexAction()
     {
-        $this->_forward('list');
+        $this->redirect('list');
     }
 
     public function listAction()

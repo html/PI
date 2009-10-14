@@ -15,15 +15,17 @@ class Controller_ExtensibleAction_Add extends Controller_ExtensibleAction
 
             $success = 
                 $form->isValid($data)
-                && $this->set('data', $data)->_save();
+                && $this->set('data', $form->getValues())->_save();
 
             if($success){
                 $this->_success();
+            }else{
+                $this->_failure();
             }
 
         }
 
-        $this->view->form = $form;
+        $this->_after();
     }
 
     public function _before()
@@ -35,6 +37,15 @@ class Controller_ExtensibleAction_Add extends Controller_ExtensibleAction
     }
 
     public function _save()
+    {
+    }
+
+    public function _after()
+    {
+        $this->view->form = $this->getForm();
+    }
+
+    public function _failure()
     {
     }
 }

@@ -78,7 +78,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Controller_Plugin_AclIntegration::setNavigation(Zend_Registry::get('nav'));
         Controller_Plugin_AclIntegration::setDefaultPrivilege('view');
         Controller_Plugin_AclIntegration::setAcl($acl);
-        Controller_Plugin_AclIntegration::setRole('guest');
+
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+            $data = (Zend_Auth::getInstance()->getStorage()->read());
+            Controller_Plugin_AclIntegration::setRole($data['group_id'] == 5 ? 'admin' : 'user');
+        }else{
+            Controller_Plugin_AclIntegration::setRole('guest');
+        }
 
         (Zend_Controller_Front::getInstance()->registerPlugin(new Controller_Plugin_AclIntegration));
     }

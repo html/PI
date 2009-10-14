@@ -9,12 +9,12 @@ class GalleryController extends ControllerAction
 
     public function indexAction()
     {
-        $this->setTitle("Галерея");
-        $this->_forward('list');
+        $this->redirect('list');
     }
 
     protected function _listAction()
     {
+        $this->setTitle("Галерея");
         $this->view->data = $this->getModel()->plistAll($this->_getParam('page', 1));
     }
 
