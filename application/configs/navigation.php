@@ -129,6 +129,20 @@ return array(
                 'action' => 'list',
                 'pages' => $gallery
             ),
+            array(
+                'label' => 'Дошка оголошень',
+                'controller' => 'mboard',
+                'action' => 'index',
+                'pages' => array(
+                    array(
+                        'label' => 'Додати оголошення',
+                        'controller' => 'mboard',
+                        'action' => 'add',
+                        'privilege' => 'addToMboard',
+                        'id' => 'addM'
+                    )
+                )
+            )
         )
     )
 );

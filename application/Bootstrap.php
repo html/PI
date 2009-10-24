@@ -71,8 +71,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->add(new Zend_Acl_Resource('edit'))
             ->add(new Zend_Acl_Resource('delete'))
             ->add(new Zend_Acl_Resource('view'))
+            ->add(new Zend_Acl_Resource('addToMboard'))
             ->allow('admin', array('view', 'add', 'edit', 'delete'))
-            ->allow('guest', 'view')
+            ->allow('guest', array('view', 'addToMboard'))
             ->allow('user', 'view');
 
         Controller_Plugin_AclIntegration::setNavigation(Zend_Registry::get('nav'));

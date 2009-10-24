@@ -19,17 +19,27 @@ class ErrorController extends ControllerAction
                 $this->setTitle('Сторінку не знайдено');
                 break;
             default:
-                if(is_a($errors->exception, Controller_Plugin_AclIntegration_Exception)){
-                    $this->_helper->viewRenderer->setScriptAction('forbidden');
+                
+                if($errors->exception instanceof Controller_Plugin_AclIntegration_Exception){
                     $this->getResponse()->setHttpResponseCode(403);
-                    ($this->getResponse()->clearBody());
-                    break;
-                }else{
-                    // application error 
-                    $this->getResponse()->setHttpResponseCode(500);
-                    $this->setTitle('Сталася помилка');
+                    $this->view->assign('code', 403);
+                    $this->setTitle('Доступ заборонено');
+                    $this->view->message = "У Вас немає доступу до цієї сторінки";
+
+                    $action = $this->_getParam('action');
+                    $controller = $this->_getParam('controller');
+
+                    if($controller == 'mboard' && $action == 'add'){
+                        $this->_helper->viewRenderer->setScriptAction('register');
+                    }
+
                     break;
                 }
+                // application error 
+                $this->getResponse()->setHttpResponseCode(500);
+                $this->setTitle('Сталася помилка');
+                $this->view->message = "Сталась помилка будь ласка повідомте адміністратора сайту про неї. <br><br>Так, всі помиляються але для програмістів помилка - професійне право :)";
+                break;
         }
         
         $this->view->exception = $errors->exception;

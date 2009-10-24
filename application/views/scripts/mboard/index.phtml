@@ -1,0 +1,7 @@
+<a href="<?=$this->linkTo('addM')?>">Додати оголошення</a>
+<br />
+<?foreach($this->data as $val){?>
+ <a href="<?=$this->url(array('controller' => 'mboard', 'action' => 'view', 'id' => $val->id))?>"><?=$val->getTitle()?></a><br />
+<?}?>
+<?=$this->data?>
+

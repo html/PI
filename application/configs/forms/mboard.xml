@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<zend-config>
+  <prefixPath>
+    <prefix>Form</prefix>
+    <path>Pi/Form</path>
+  </prefixPath>
+  <elements>
+    <title type="textBox">
+      <options label="Заголовок" required="1"/>
+    </title>
+    <content type="editor">
+      <options label="Текст оголошення" required="1"/>
+    </content>
+    <submit>
+      <type>submitButton</type>
+      <options label="Додати оголошення"/>
+    </submit>
+  </elements>
+</zend-config>
+
