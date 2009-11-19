@@ -6,5 +6,6 @@ class Articles_View extends Pi_Controller_ExtensibleAction_View
     {
         parent::_before();
         $this->setTitle(($this->get('data')->title));
+        $this->view->data = $this->get('data');
     }
 }

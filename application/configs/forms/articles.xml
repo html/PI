@@ -8,6 +8,9 @@
     <title type="textBox">
       <options label="Заголовок" required="1"/>
     </title>
+    <keywords type="textarea">
+      <options label="Ключові слова"/>
+    </keywords>
     <content type="editor">
       <options label="Стаття" required="1"/>
     </content>
