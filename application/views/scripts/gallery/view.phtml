@@ -1,6 +1,6 @@
 <?=$this->render('gallery/view_navbar.phtml')?>
 <div class="clear"></div>
-<center><a href="<?=$this->item->getImageUrl()?>" onclick="return false" class="lightbox"><img src="<?=$this->item->getImageViewUrl()?>"/></a></center>
+<center><a href="<?=$this->item->getImageUrl()?>" alt="<?=$this->item->getOptimizationMeta()?>" title="<?=$this->item->getOptimizationMeta()?>"  onclick="return false" class="lightbox"><img src="<?=$this->item->getImageViewUrl()?>"/></a></center>
 <div class="clear"></div>
 <?=$this->render('gallery/view_navbar.phtml')?>
 <div class="clear"></div>

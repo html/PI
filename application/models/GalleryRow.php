@@ -182,5 +182,10 @@ class GalleryRow extends Zend_Db_Table_Row_Abstract
     {
         return truncate(strip_tags($this->description));
     }
+
+    public function getOptimizationMeta()
+    {
+        return htmlspecialchars(strip_tags($this->description));
+    }
 }
 
