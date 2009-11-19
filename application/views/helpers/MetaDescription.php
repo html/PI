@@ -10,7 +10,7 @@ class Zend_View_Helper_MetaDescription extends Zend_View_Helper_Abstract
         $view = ($this->view);
 
         return $view->escape(
-            ($view->data && isset($view->data['description'])) ? $view->data['description']
+            ($view->data && is_array($view->data) && isset($view->data['description'])) ? $view->data['description']
                 : ($view->description ? $view->description : $view->metaKeywords())
         );
     }
