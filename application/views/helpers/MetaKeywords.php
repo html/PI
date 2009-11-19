@@ -10,7 +10,7 @@ class Zend_View_Helper_MetaKeywords extends Zend_View_Helper_Abstract
         $view = ($this->view);
 
         return $view->escape(
-            ($view->data && is_array($view->data) && isset($view->data['keywords'])) ? $view->data['keywords']
+            ($view->data && ($view->data instanceof Zend_Db_Table_Row_Abstract) && isset($view->data->keywords)) ? $view->data->keywords
                 : ($view->keywords ? $view->keywords : '')
         );
     }
