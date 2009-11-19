@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Olexiy Zamkoviy
+ * @version  0.1
+ */
 
 
 class Table extends Zend_Db_Table_Abstract
@@ -23,7 +27,7 @@ class Table extends Zend_Db_Table_Abstract
         }
 
         foreach ($primary as $p) {
-            $select->where("$p = ?", $id);
+            $select->where("`{$this->_name}`.`$p` = ?", $id);
         }
 
         return $select;
@@ -36,7 +40,7 @@ class Table extends Zend_Db_Table_Abstract
 
     public function __call($function, $args)
     {
-        $re = '/(' . join('|', array_keys(array_map('preg_quote', $this->_queryTypes))) . ')(.+)/';
+        $re = '/(' . join('|', array_keys(array_map('preg_quote', $this->_queryTypes))) . ')(.+?)(?:By(.+))*$/';
 
         if(preg_match($re, $function, $matches)){
             $queryType = $matches[1];
@@ -44,12 +48,34 @@ class Table extends Zend_Db_Table_Abstract
             if(isset($this->_queryTypes[$queryType])){
                 $temp = (str_split($matches[2]));
                 $temp[0] = strtolower($temp[0]);
+
                 $method_names = array('_' . $queryType . $matches[2] . 'Query', '_' . join($temp) . 'Query');
                 $queryMethod = $this->_queryTypes[$queryType];
 
+                if(isset($matches[3])){
+                    array_unshift($method_names, '_' . $queryType . $matches[2] . 'ByQuery');
+
+                    if(Zend_Version::compareVersion('1.7.9') < 0){
+                        $filter = new Zend_Filter_Word_CamelCaseToUnderscore;
+                        $field = strtolower($filter->filter($matches[3]));
+
+                    }else{
+                        $field  = (strtolower(
+                            Zend_Filter::filterStatic(
+                                $matches[3], 
+                                'Word_CamelCaseToUnderscore'
+                            )
+                        ));
+                    }
+
+                    array_unshift($args, $field);
+                }
+
                 foreach($method_names as $method){
-                    if((method_exists($this, ($method)))){
-                        return $this->$queryMethod(call_user_func_array(array($this, $method), $args));
+                    if(method_exists($this, ($method))){
+                        $sql = call_user_func_array(array($this, $method), $args);
+                        return $this->$queryMethod($sql);
+                        break;
                     }
                 }
                 die("Cannot find proper query method for function <b>" . $function . "</b> of class " . get_class($this));
@@ -71,7 +97,7 @@ class Table extends Zend_Db_Table_Abstract
 
     public function fetchPaged($query)
     {
-        return Zend_Paginator::factory($query)->setCurrentPageNumber(
+        return Zend_Paginator::factory($query)->setItemCountPerPage(20)->setCurrentPageNumber(
             $this->getPage()
         );
     }
@@ -94,6 +120,7 @@ class Table extends Zend_Db_Table_Abstract
     public function setPage($page)
     {
         $this->_page = max((int)$page, 1);
+        return $this;
     }
 
     public function getPage()
@@ -119,5 +146,11 @@ class Table extends Zend_Db_Table_Abstract
     protected function _transform($data)
     {
         return $data;
+    }
+
+    public function _getOneByQuery($field, $value)
+    {
+        return $this->select()
+            ->where("$field = ?", $value);
     }
 }
