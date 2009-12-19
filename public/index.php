@@ -15,6 +15,11 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+if(preg_match('{/index.php(?:/)?(.*$)}', $_SERVER['REQUEST_URI'], $matches)){
+    header("Location: /" . ($matches[1]));
+    exit;
+}
+
 /** Zend_Application */
 require_once 'Zend/Application.php';  
 require_once 'functions.php';
