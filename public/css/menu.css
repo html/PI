@@ -1,0 +1,41 @@
+/* CSS Document */
+body {
+	font: 14px Verdana;
+}
+
+.button {
+	display:block;
+	color:#FFFFFF;
+	background:url(/images/menu/button_r.jpg);
+	background-position:top right;
+	background-repeat:no-repeat;
+	padding-right:43px;
+	float:left;
+	outline:none;
+	text-decoration:none;
+	font-size:14px;
+    height: 44px;
+    width: 130px;
+    margin-bottom: 5px;
+    overflow:hidden;
+}
+
+.button span {
+	display:block;
+	line-height: 10px;
+	background:url(/images/menu/button_l.jpg);
+	background-repeat:no-repeat;
+	padding: 17px 0 17px 26px;
+	min-width:120px;
+    font-weight: bold;
+
+}
+.button:hover {
+	background-position: 100% -44px;
+}
+
+.button:hover span {
+	background-position: 0% -44px;
+	color:#FFFFFF;
+
+}

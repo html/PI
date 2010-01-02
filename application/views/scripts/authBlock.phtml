@@ -7,7 +7,8 @@ $logoutUrl = append_sid("/forum/ucp.php", 'mode=logout', true, $this->userData->
 <?if(Zend_Auth::getInstance()->hasIdentity()){?>
 <span style="padding:15px"><?=$this->userData->username_clean?></span>
 <br />
-<a class="top" href="<?=$logoutUrl?>">Вийти</a>
+<a class="button" href="<?=$logoutUrl?>"><span>Вийти</span></a>
 <?}else{?>
-<a class="top" href="<?=$loginUrl?>">Увійти на сайт</a>
+<a class="button" href="<?=$loginUrl?>"><span>Увійти на сайт</span></a>
+<br />
 <?}?>

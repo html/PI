@@ -12,6 +12,7 @@
         ->appendStylesheet('js/dojo/dijit/themes/soria/soria.css')
         ->appendStylesheet('js/dojo/dijit/themes/soria/soria_rtl.css')
         ->appendStylesheet('js/dojo/dojox/editor/plugins/resources/editorPlugins.css')
+        ->appendStylesheet('css/menu.css')
 ?>
   <?=$this->headScript()->appendFile('/js/jquery-1.3.2.js')?>
   <?=$this->dojo()->setLocalPath("/js/dojo/dojo/dojo.js")?>
@@ -50,19 +51,13 @@
 					<td width="15"><p class="sp">&nbsp;</p></td>
 					<td width="181" align="center" valign="top">
 						<!--begin menu table-->
-						<table cellpadding="0" cellspacing="0" width="181" align="center">
-							<tr>
-								<td width="181" align="center"><img src="images/menu_1.gif" width="181" height="34" style="float:left"></td>
-							</tr>
-<tr>
-								<td width="181" height="10" background="images/menu_2.gif" align="left">
-                                <a class="top" href="<?=$this->url(array('controller' => 'index', 'action' => 'index'), 'default', true)?>">Головна</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'forum', 'action' => 'index'), 'default', true)?>">Форум</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), 'default', true)?>">Галерея</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'articles', 'action' => 'index'), 'default', true)?>">Статті</a><br/>
-                                <a class="top" href="<?=$this->url(array('controller' => 'links', 'action' => 'index'), 'default', true)?>">Ссилки</a><br/>
-                                <a class="top" href="http://weather.<?=$_SERVER['HTTP_HOST']?>/">Погода</a><br/>
-                                <a class="top" href="http://map.<?=$_SERVER['HTTP_HOST']?>/">Карта</a><br/>
+                                <a class="button" href="<?=$this->url(array('controller' => 'index', 'action' => 'index'), 'default', true)?>"><span>Головна</span></a><br/>
+                                <a class="button" href="<?=$this->url(array('controller' => 'forum', 'action' => 'index'), 'default', true)?>"><span>Форум</span></a><br/>
+                                <a class="button" href="<?=$this->url(array('controller' => 'gallery', 'action' => 'index'), 'default', true)?>"><span>Галерея</span></a><br/>
+                                <a class="button" href="<?=$this->url(array('controller' => 'articles', 'action' => 'index'), 'default', true)?>"><span>Статті</span></a><br/>
+                                <a class="button" href="<?=$this->url(array('controller' => 'links', 'action' => 'index'), 'default', true)?>"><span>Ссилки</span></a><br/>
+                                <a class="button" href="http://weather.<?=$_SERVER['HTTP_HOST']?>/"><span>Погода</span></a><br/>
+                                <a class="button" href="http://map.<?=$_SERVER['HTTP_HOST']?>/"><span>Карта</span></a><br/>
                                 <?if(false){?>
                                 <a class="top" href="<?=$this->url(array('controller' => 'mboard', 'action' => 'index'), 'default', true)?>">Дошка оголошень</a><br/>
                                 <?}?>
@@ -73,13 +68,6 @@
 									<a href="news.htm" class="top">Новини</a><br>
 									<a href="foods.htm" class="top">Каталог товарів</a><br>
 									<a href="map.htm" class="top">Карта сайту</a><br>*/?>
-								</td>
-							</tr>
-							<tr height="34">
-								<td width="181" height="34" align="center"><img src="images/menu_3.gif" width="181" height="34"></td>
-							</tr>
-						</table>
-						<!--end memu table-->
 					</td>
 					<td width="15"><p class="sp">&nbsp;</p></td>
 					<td width="700" align="left" valign="top">
